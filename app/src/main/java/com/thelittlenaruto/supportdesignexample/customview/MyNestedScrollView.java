@@ -10,9 +10,6 @@ import android.view.ViewConfiguration;
  * Created by TheLittleNaruto on 21-07-2015 at 18:28
  */
 public class MyNestedScrollView extends NestedScrollView {
-    private int slop;
-    private float mInitialMotionX;
-    private float mInitialMotionY;
 
     public MyNestedScrollView(Context context) {
         super(context);
@@ -21,7 +18,7 @@ public class MyNestedScrollView extends NestedScrollView {
 
     private void init(Context context) {
         ViewConfiguration config = ViewConfiguration.get(context);
-        slop = config.getScaledEdgeSlop();
+        int slop = config.getScaledEdgeSlop();
     }
 
     public MyNestedScrollView(Context context, AttributeSet attrs) {
@@ -39,8 +36,6 @@ public class MyNestedScrollView extends NestedScrollView {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        final float x = ev.getX();
-        final float y = ev.getY();
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 xDistance = yDistance = 0f;

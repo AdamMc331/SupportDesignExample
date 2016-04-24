@@ -50,7 +50,8 @@
                 android:background="@color/deep_green_700_alpha_50"
                 android:minHeight="190dp"
                 android:src="@drawable/naruto_hinata"
-                app:layout_collapseMode="parallax" />
+                app:layout_collapseMode="parallax"
+                tools:ignore="ContentDescription" />
 
 
             <android.support.v7.widget.Toolbar

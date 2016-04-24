@@ -33,14 +33,11 @@ import com.thelittlenaruto.supportdesignexample.R;
  *         This is simple base calss of actvity which use to display posts and photos
  *         MainActivity#NavigationView  use for dispalying navigation drawer menu
  */
+@SuppressWarnings("ConstantConditions")
 public class MainActivity extends AppCompatActivity {
 
-    public static final String POST_FRAGMENT = "post_fragment";
-    public static final String PHOTO_FRAGMENT = "photo_fragment";
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle toggle;
-    private TabLayout tabLayout;
-    private MyAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +56,13 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setBackgroundColor(getResources().getColor(R.color.app_background_color));
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
-        mDrawerLayout.setDrawerListener(toggle);
+        mDrawerLayout.addDrawerListener(toggle);
         setupDrawerContent(navigationView);
         //By default add post fragment
         getSupportActionBar().setTitle(getString(R.string.nav_action_posts));
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        mAdapter = new MyAdapter(getSupportFragmentManager());
+        MyAdapter mAdapter = new MyAdapter(getSupportFragmentManager());
         ViewPager mPager = (ViewPager) findViewById(R.id.viewPager);
         mPager.setAdapter(mAdapter);
         tabLayout.setupWithViewPager(mPager);
@@ -155,9 +152,7 @@ public class MainActivity extends AppCompatActivity {
          */
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View v = inflater.inflate(R.layout.fragment_pager_list, container, false);
-
-            return v;
+            return inflater.inflate(R.layout.fragment_pager_list, container, false);
         }
 
         @Override
@@ -170,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             textView.setText("Fragment#" + mNum);
             textView.setLayoutParams(params);
             getListView().addHeaderView(textView);
-            setListAdapter(new ArrayAdapter<String>(getActivity(),
+            setListAdapter(new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_list_item_1, Cheeses.sCheeseStrings));
         }
 

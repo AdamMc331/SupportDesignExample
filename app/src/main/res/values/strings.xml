@@ -8,4 +8,5 @@
     <string name="empty_list">No Data found !</string>
     <string name="app_developer_name">TheLittleNaruto</string>
     <string name="title_activity_comments">Comments</string>
+    <string name="no_items">No items.</string>
 </resources>
